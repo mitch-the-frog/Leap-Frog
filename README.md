@@ -1,6 +1,23 @@
-# Leap-Frog
-A discord.js Bot repository 
+# A dynamic command handler, soon to be expanded
 
 
+const { prefix } = require('./config.json')
 
-This is a Discord Bot written in discord.js, and has multiple functions now and will continue to grow
+module.exports = (client, aliases, callback) => {
+  if (typeof aliases === 'string') {
+    aliases = [aliases]
+  }
+
+  client.on('message', (message) => {
+    const { content } = message
+
+    aliases.forEach((alias) => {
+      const command = `${prefix}${alias}`
+
+      if (content.startsWith(`${command} `) || content === command) {
+        console.log(`Running the command ${command}`)
+        callback(message)
+      }
+    })
+  })
+}
