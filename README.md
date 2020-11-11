@@ -1,3 +1,7 @@
+The index.js file, containing the commands
+
+
+
 const Discord = require('discord.js')
 const client = new Discord.Client()
 
